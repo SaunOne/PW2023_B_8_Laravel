@@ -20,11 +20,11 @@ class UserController extends Controller
 
     public function showById($id)
     {
-        $users = User::where('id_user' , $id);
+        $user = User::find($id);
 
         return response([
             'message' => 'Show User Successfully',
-            'data' => $users
+            'data' => $user
         ], 200);
     }
 
@@ -67,7 +67,6 @@ class UserController extends Controller
 
         return response([
             'message' => 'Delete User Successfully',
-            'data' => $user
         ], 200);
     }
 

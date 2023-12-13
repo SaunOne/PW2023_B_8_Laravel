@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Deposit;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -40,27 +41,30 @@ class DepositController extends Controller
         ], 200);
     }
 
-    public function store(Request $request)
+    public function deposit(Request $request)
     {
         $data = $request->all();
 
         $validate = Validator::make($data, [
-            'jumlah_depost' => 'required',
+            'jumlah_deposit' => 'required',
             'metode_pembayaran' => 'required',
-            'status' => 'required'
         ]);
+
+        $user = User::find(auth()->id());
 
         if ($validate->fails()) {
             return response(['message' => $validate->errors()->first()], 400);
         }
 
         $data['tanggal_deposit'] = Carbon::now()->format('d-m-y');
-
-        $user = Deposit::create($data);
+        $data['status'] = 'success';
+        $deposit = Deposit::create($data);
+        $user['saldo']+=$deposit['jumlah_deposit'];
+        $user->save();
 
         return response([
             'message' => 'Register Success',
-            'data' => $user
+            'data' => $deposit
         ], 200);
     }
 

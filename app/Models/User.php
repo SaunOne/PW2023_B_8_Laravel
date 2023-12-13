@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     public function transactions()
     {
-        return $this->hasMany(TransactionLaundry::class, 'id_user');
+        return $this->hasMany(TransaksiLaundry::class, 'id_user');
     }
 
     protected $hidden = [
