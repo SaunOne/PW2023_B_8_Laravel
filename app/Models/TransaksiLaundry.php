@@ -14,6 +14,7 @@ class TransaksiLaundry extends Model
         'id_layanan',
         'id_user',
         'id_jenis_pengambilan',
+        'berat',
         'total_harga',
         'status_pengerjaan',
         'status_pembayaran',

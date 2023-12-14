@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\TransaksiTambahan;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ class AuthController extends Controller
 
         $user = User::create($registrationData);
 
+        
         return response([
             'message' => 'Register Success',
             'user' => $user
