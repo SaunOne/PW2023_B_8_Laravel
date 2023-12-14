@@ -7,6 +7,7 @@ use App\Models\TransaksiTambahan;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,7 +34,18 @@ class AuthController extends Controller
 
         $registrationData['password'] = bcrypt($request->password);
 
+        $str = Str::random(100);
+        $registrationData['verify_key'] = $str;
         $user = User::create($registrationData);
+
+        $details = [
+            'username' => $request->username,
+            'website' => 'Laundry Space',
+            'datetime' => Carbon::now(),
+            'url' => request()->getHttpHost() . '/register/verify/' . $str,
+        ];
+
+        Mail::to($request->email)->send(new MailSend($details));
 
         
         return response([
