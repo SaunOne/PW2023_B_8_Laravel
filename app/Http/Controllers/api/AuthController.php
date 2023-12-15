@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailSend;
 use App\Models\TransaksiTambahan;
 use App\Models\User;
 use App\Models\Wallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -44,13 +47,13 @@ class AuthController extends Controller
             'datetime' => Carbon::now(),
             'url' => request()->getHttpHost() . '/register/verify/' . $str,
         ];
-
+        
         Mail::to($request->email)->send(new MailSend($details));
 
         
         return response([
             'message' => 'Register Success',
-            'user' => $user
+            'user' => $user 
         ], 200);
     }
 
