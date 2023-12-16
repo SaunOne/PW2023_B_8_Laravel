@@ -29,6 +29,19 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function showByLogin()
+    {   
+        response([
+            'message' => auth()->id(),
+        ]);
+        $user = User::find(auth()->id());
+
+        return response([
+            'message' => 'Show User Successfully',
+            'data' => $user
+        ], 200);
+    }
+
     public function updateProfile(Request $request){
 
         $data = $request->all();
@@ -50,10 +63,12 @@ class UserController extends Controller
 
 
         if ($validate->fails()) {
+            $user['email'] = $temp;
+            $user->save();
             return response(['message' => $validate->errors()->first()], 400);
         }
     
-        $user['email'] = $temp;
+        
 
         $user->update($data);
 

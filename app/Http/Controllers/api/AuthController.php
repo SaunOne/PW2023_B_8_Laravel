@@ -27,9 +27,10 @@ class AuthController extends Controller
             'email' => 'required|email:rfc,dns|unique:users',
             'no_telp' => 'required', 
             'alamat' => 'required',
-            'type_pengguna' => 'required',
             'image_profile' => 'required'
         ]);
+
+        $registrationData['type_pengguna'] = 'user';
 
         if ($validate->fails()) {
             return response(['message' => $validate->errors()->first()], 400);
@@ -53,7 +54,7 @@ class AuthController extends Controller
         
         return response([
             'message' => 'Register Success',
-            'user' => $user 
+            'data' => $user 
         ], 200);
     }
 
@@ -77,7 +78,7 @@ class AuthController extends Controller
 
         return response([
             'message' => 'Authenticated',
-            'user' => $user,
+            'data' => $user,
             'token_type' => 'Bearer',
             'access_token' => $token
         ]);

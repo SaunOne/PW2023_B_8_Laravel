@@ -58,6 +58,7 @@ class DepositController extends Controller
 
         $data['tanggal_deposit'] = Carbon::now()->format('d-m-y');
         $data['status'] = 'success';
+        $data['id_user'] = auth()->id();
         $deposit = Deposit::create($data);
         $user['saldo']+=$deposit['jumlah_deposit'];
         $user->save();
