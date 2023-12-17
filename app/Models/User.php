@@ -28,6 +28,9 @@ class User extends Authenticatable
         'alamat',
         'type_pengguna',
         'image_profile',
+        'verify_key',
+        'active',
+        
     ];
 
 

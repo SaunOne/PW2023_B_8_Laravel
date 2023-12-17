@@ -11,6 +11,7 @@ class Deposit extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'id_user',
         'jumlah_deposit',
         'metode_pembayaran',
         'status',

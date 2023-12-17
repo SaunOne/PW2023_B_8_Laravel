@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\MailSend;
 use App\Models\TransaksiTambahan;
 use App\Models\User;
 use App\Models\Wallet;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -23,9 +27,10 @@ class AuthController extends Controller
             'email' => 'required|email:rfc,dns|unique:users',
             'no_telp' => 'required', 
             'alamat' => 'required',
-            'type_pengguna' => 'required',
             'image_profile' => 'required'
         ]);
+
+        $registrationData['type_pengguna'] = 'user';
 
         if ($validate->fails()) {
             return response(['message' => $validate->errors()->first()], 400);
@@ -33,12 +38,23 @@ class AuthController extends Controller
 
         $registrationData['password'] = bcrypt($request->password);
 
+        $str = Str::random(100);
+        $registrationData['verify_key'] = $str;
         $user = User::create($registrationData);
+
+        $details = [
+            'username' => $request->username,
+            'website' => 'Laundry Space',
+            'datetime' => Carbon::now(),
+            'url' => request()->getHttpHost() . '/register/verify/' . $str,
+        ];
+        
+        Mail::to($request->email)->send(new MailSend($details));
 
         
         return response([
             'message' => 'Register Success',
-            'user' => $user
+            'data' => $user 
         ], 200);
     }
 
@@ -62,7 +78,7 @@ class AuthController extends Controller
 
         return response([
             'message' => 'Authenticated',
-            'user' => $user,
+            'data' => $user,
             'token_type' => 'Bearer',
             'access_token' => $token
         ]);

@@ -53,12 +53,12 @@ class TransaksiLaundryController extends Controller
 
         $validate = Validator::make($data, [
             'id_layanan' => 'required',
-            'id_user' => 'required',
             'id_jenis_pengambilan' => 'required',
+            
             'berat' => 'required',
             
         ]);
-
+        $data['id_user'] = auth()->id();
         $layanan = Layanan::find($data['id_layanan']);
 
 
