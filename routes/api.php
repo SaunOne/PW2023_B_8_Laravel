@@ -16,15 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register',[App\Http\Controllers\Api\AuthController::class,'register']);
 Route::post('/login',[App\Http\Controllers\Api\AuthController::class,'login']);
+Route::post('/test/{id}',[App\Http\Controllers\Api\UserController::class,'tempCreate']);
 
 Route::middleware('auth:api')->group(function(){
     //user
     Route::get('/users',[App\Http\Controllers\Api\UserController::class,'showAll']);
-    Route::put('/users',[App\Http\Controllers\Api\UserController::class,'updateProfile']);
+    Route::post('/users/update',[App\Http\Controllers\Api\UserController::class,'updateProfile']);
     Route::get('/users/{id}',[App\Http\Controllers\Api\UserController::class,'showById']);
     Route::get('/userLogin',[App\Http\Controllers\Api\UserController::class,'showByLogin']);
+
     Route::delete('/users/{id}',[App\Http\Controllers\Api\UserController::class,'destroy']);
-    
     //item
     Route::get('/item',[App\Http\Controllers\Api\ItemController::class,'showAll']);
     Route::get('/item/{id}',[App\Http\Controllers\Api\ItemController::class,'showById']);
@@ -36,14 +37,14 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/layanan',[App\Http\Controllers\Api\LayananController::class,'showAll']);
     Route::get('/layanan/{id}',[App\Http\Controllers\Api\LayananController::class,'showById']);
     Route::post('/layanan',[App\Http\Controllers\Api\LayananController::class,'store']);
-    Route::put('/layanan/{$id}',[App\Http\Controllers\Api\LayananController::class,'update']);
+    Route::put('/layanan/{id}',[App\Http\Controllers\Api\LayananController::class,'update']);
     Route::delete('/layanaan/{id}',[App\Http\Controllers\Api\LayananController::class,'destroy']);
 
     //jenisPengambilan
     Route::get('/jenisPengambilan',[App\Http\Controllers\Api\JenisPengambilanController::class,'showAll']);
     Route::get('/jenisPengambilan/{id}',[App\Http\Controllers\Api\JenisPengambilanController::class,'showById']);
     Route::post('/jenisPengambilan',[App\Http\Controllers\Api\JenisPengambilanController::class,'store']);
-    Route::put('/jenisPengambilan/{$id}',[App\Http\Controllers\Api\JenisPengambilanController::class,'update']);
+    Route::put('/jenisPengambilan/{id}',[App\Http\Controllers\Api\JenisPengambilanController::class,'update']);
     Route::delete('/jenisPengambilan/{id}',[App\Http\Controllers\Api\JenisPengambilanController::class,'destroy']);
 
     //deposit
@@ -58,7 +59,7 @@ Route::middleware('auth:api')->group(function(){
     Route::post('/transaksiLaundry',[App\Http\Controllers\Api\TransaksiLaundryController::class,'order']);
  
     Route::put('/transaksiLaundry/harga/{id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'updateTotalHarga']);
-    Route::put('/transaksiLaundry/{$id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'update']);
+    Route::put('/transaksiLaundry/{id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'update']);
     Route::delete('/transaksiLaundry/{id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'destroy']);
     Route::put('/transaksiLaundry/bayar/{id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'bayar']);
 
@@ -66,7 +67,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/transaksiTambahan/transaksi/{id}',[App\Http\Controllers\Api\TransaksiTambahanController::class,'showByIdTransaksi']);
     Route::get('/transaksiTambahan/{id}',[App\Http\Controllers\Api\TransaksiTambahanController::class,'showByIdTransaksi']);
     Route::post('/transaksiTambahan',[App\Http\Controllers\Api\TransaksiTambahanController::class,'tambahItem']);
-    Route::put('/transaksiTambahan/{$id}',[App\Http\Controllers\Api\TransaksiTambahanController::class,'update']);
+    Route::put('/transaksiTambahan/{id}',[App\Http\Controllers\Api\TransaksiTambahanController::class,'update']);
     Route::delete('/transaksiTambahan/{id}',[App\Http\Controllers\Api\TransaksiTambahanController::class,'destroy']);
 }); 
 
