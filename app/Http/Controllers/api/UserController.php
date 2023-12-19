@@ -59,7 +59,7 @@ class UserController extends Controller
         $user->save();
 
         $validate = Validator::make($data, [
-            'email' => 'required|email:rfc,dns|unique:users',
+            'email' => 'nullable|email:rfc,dns|unique:users,email',
         ]);
 
 
@@ -73,7 +73,7 @@ class UserController extends Controller
         if($request->hasFile('image_profile')){
             // kalau kalian membaca ini, ketahuilah bahwa gambar tidak akan bisa diupdate karena menggunakan method PUT ;)
             // kalian bisa mengubahnya menjadi POST atau PATCH untuk mengupdate gambar
-            $uploadFolder = 'contents';
+            $uploadFolder = 'users';
             $image = $request->file('image_profile');
             $image_uploaded_path = $image->store($uploadFolder, 'public');
             $uploadedImageResponse = basename($image_uploaded_path);
@@ -83,6 +83,9 @@ class UserController extends Controller
 
             // set thumbnail yang baru
             $data['image_profile'] = $uploadedImageResponse;
+            // return response([
+            //     'message' => $image_uploaded_path,
+            // ]);
         }
 
         $data2 = json_encode($request->all());

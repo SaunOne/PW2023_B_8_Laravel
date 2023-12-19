@@ -55,7 +55,7 @@ Route::middleware('auth:api')->group(function(){
     //transaksiLaundry
     Route::get('/transaksiLaundry',[App\Http\Controllers\Api\TransaksiLaundryController::class,'showAll']);
     Route::get('/transaksiLaundry/{id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'showById']);
-    Route::get('/transaksiLaundry/user/{id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'showByIdUser']);
+    Route::get('/transaksiLaundryByUser',[App\Http\Controllers\Api\TransaksiLaundryController::class,'showByIdUser']);
     Route::post('/transaksiLaundry',[App\Http\Controllers\Api\TransaksiLaundryController::class,'order']);
  
     Route::put('/transaksiLaundry/harga/{id}',[App\Http\Controllers\Api\TransaksiLaundryController::class,'updateTotalHarga']);
