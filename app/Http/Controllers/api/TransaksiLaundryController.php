@@ -40,7 +40,10 @@ class TransaksiLaundryController extends Controller
     public function showByIdUser()
     {
      
-        $transaksis = TransaksiLaundry::where('id_user', auth()->id())->get();
+        $transaksis = TransaksiLaundry::join('layanan', 'transaksi_laundry.id_layanan', '=', 'layanan.id_layanan')
+    ->where('transaksi_laundry.id_user', auth()->id())
+    ->get();
+
 
         return response([
             'message' => 'Show Transaksi Laundry Successfully',
