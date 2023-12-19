@@ -26,7 +26,7 @@ class TransaksiLaundryController extends Controller
     public function showById($id)
     {
         $transaksi = TransaksiLaundry::find($id);
-
+ 
         if (!$transaksi) {
             return response(['message' => 'Transaksi Laundry not found'], 404);
         }
