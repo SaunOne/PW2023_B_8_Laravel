@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class DepositController extends Controller
+class TransaksiWalletController extends Controller
 {
     public function showAll()
     {
@@ -69,7 +69,7 @@ class DepositController extends Controller
 
         $data['tanggal'] = Carbon::now()->format('d-m-y');
         $data['status'] = 'success';
-        $data['type_transaksi'] = 'deposit';
+        $data['type_transaksi'] = 'Deposit';
         $data['id_user'] = auth()->id();
         $deposit = TransaksiWallet::create($data);
         $user['saldo']+=$deposit['jumlah'];
@@ -87,7 +87,7 @@ class DepositController extends Controller
         $data = $request->all();
 
         $validate = Validator::make($data, [
-            'jumlah_deposit' => 'required',
+            'jumlah' => 'required',
         ]);
 
         $user = User::find(auth()->id());
@@ -98,8 +98,8 @@ class DepositController extends Controller
 
         $data['tanggal'] = Carbon::now()->format('d-m-y');
         $data['status'] = 'success';
-        $data['metode_pembayaran'] = 'wallet';
-        $data['type_transaksi'] = 'pembayaran';
+        $data['metode_pembayaran'] = 'Wallet';
+        $data['type_transaksi'] = 'Pembayaran';
         $data['id_user'] = auth()->id();
         $bayar = TransaksiWallet::create($data);
         $user['saldo']-=$bayar['jumlah'];
