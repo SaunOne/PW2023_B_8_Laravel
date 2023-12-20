@@ -17,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register',[App\Http\Controllers\Api\AuthController::class,'register']);
 Route::post('/login',[App\Http\Controllers\Api\AuthController::class,'login']);
 Route::post('/test/{id}',[App\Http\Controllers\Api\UserController::class,'tempCreate']);
+Route::get('/verify/{verify_key}',[App\Http\Controllers\Api\AuthController::class,'verify']);
 
 Route::middleware('auth:api')->group(function(){
     //user
     Route::get('/users',[App\Http\Controllers\Api\UserController::class,'showAll']);
     Route::post('/users/update',[App\Http\Controllers\Api\UserController::class,'updateProfile']);
+    Route::post('/usersUpdate/{id}',[App\Http\Controllers\Api\UserController::class,'updateUser']);
     Route::get('/users/{id}',[App\Http\Controllers\Api\UserController::class,'showById']);
     Route::get('/userLogin',[App\Http\Controllers\Api\UserController::class,'showByLogin']);
 

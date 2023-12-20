@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
+
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -25,9 +26,7 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required|min:8',
             'email' => 'required|email:rfc,dns|unique:users',
-            'no_telp' => 'required', 
             'alamat' => 'required',
-            'image_profile' => 'required'
         ]);
 
         $registrationData['type_pengguna'] = 'user';
@@ -46,16 +45,41 @@ class AuthController extends Controller
             'username' => $request->username,
             'website' => 'Laundry Space',
             'datetime' => Carbon::now(),
-            'url' => request()->getHttpHost() . '/register/verify/' . $str,
+            'url' => request()->getHttpHost()  . '/api/verify/' . $str,
         ];
-        
+
         Mail::to($request->email)->send(new MailSend($details));
 
-        
+
         return response([
             'message' => 'Register Success',
-            'data' => $user 
+            'data' => $user,
+            'url' => request()->getHttpHost() . '/register/verify/' . $str,
         ], 200);
+    }
+
+    public function verify($verify_key)
+    {
+        $keyCheck = User::select('verify_key')
+            ->where('verify_key', $verify_key)
+            ->exists();
+
+        if ($keyCheck) {
+            $user = User::where('verify_key', $verify_key)
+                ->update([
+                    'active' => 1,
+                    'email_verified_at' => date('Y-m-d H:i:s'),
+                ]);
+            return ([
+                'Message' => "Verifikasi berhasil. Akun anda sudah aktif.",
+            ]);
+        } else {
+            return ([
+                'message' => "Keys tidak valid.",
+                'verify' => $verify_key,
+                'data' => $keyCheck
+            ]);
+        }
     }
 
     public function login(Request $request)
