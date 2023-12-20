@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\JenisPengambilan;
 use App\Models\Layanan;
 use App\Models\TransaksiLaundry;
 use App\Models\TransaksiTambahan;
@@ -75,9 +76,9 @@ class TransaksiLaundryController extends Controller
         if ($validate->fails()) {
             return response(['message' => $validate->errors()->first()], 400);
         }
-
+        $jenisPengambilan = JenisPengambilan::find($data['id_jenis_pengambilan']);
         $totalHarga = $data['berat'] * $layanan['harga'];
-        $data['total_harga'] = $totalHarga;
+        $data['total_harga'] = $totalHarga + $jenisPengambilan['harga'];
 
         $transaksi = TransaksiLaundry::create($data);
 

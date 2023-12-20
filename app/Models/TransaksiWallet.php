@@ -12,7 +12,7 @@ class TransaksiWallet extends Model
 
     protected $fillable = [
         'id_user',
-        'type_teransaksi',
+        'type_transaksi',
         'jumlah',
         'metode_pembayaran',
         'status',

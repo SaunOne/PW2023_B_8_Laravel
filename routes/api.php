@@ -48,9 +48,11 @@ Route::middleware('auth:api')->group(function(){
     Route::delete('/jenisPengambilan/{id}',[App\Http\Controllers\Api\JenisPengambilanController::class,'destroy']);
 
     //deposit
-    Route::get('/deposit',[App\Http\Controllers\Api\DepositController::class,'showAll']);
-    Route::get('/deposit/{id}',[App\Http\Controllers\Api\DepositController::class,'showById']);
-    Route::post('/deposit',[App\Http\Controllers\Api\DepositController::class,'deposit']);
+    Route::get('/deposit',[App\Http\Controllers\Api\TransaksiWalletController::class,'showAll']);
+    Route::get('/deposit/{id}',[App\Http\Controllers\Api\TransaksiWalletController::class,'showById']);
+    Route::get('/deposit/user/{id}',[App\Http\Controllers\Api\TransaksiWalletController::class,'showByIdUser']);
+    Route::post('/deposit',[App\Http\Controllers\Api\TransaksiWalletController::class,'deposit']);
+    Route::post('/pembayaran',[App\Http\Controllers\Api\TransaksiWalletController::class,'pembayaran']);
     
     //transaksiLaundry
     Route::get('/transaksiLaundry',[App\Http\Controllers\Api\TransaksiLaundryController::class,'showAll']);
