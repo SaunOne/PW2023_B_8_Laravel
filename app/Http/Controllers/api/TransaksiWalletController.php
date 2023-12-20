@@ -77,7 +77,8 @@ class DepositController extends Controller
 
         return response([
             'message' => 'Transaksi Success',
-            'data' => $deposit
+            'data' => $deposit,
+            
         ], 200);
     }
 
