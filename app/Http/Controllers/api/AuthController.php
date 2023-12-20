@@ -25,9 +25,9 @@ class AuthController extends Controller
             'username' => 'required',
             'password' => 'required|min:8',
             'email' => 'required|email:rfc,dns|unique:users',
-            'no_telp' => 'required', 
+            'no_telp' => 'nullable', 
             'alamat' => 'required',
-            'image_profile' => 'required'
+            'image_profile' => 'nullable'
         ]);
 
         $registrationData['type_pengguna'] = 'user';

@@ -26,6 +26,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/userLogin',[App\Http\Controllers\Api\UserController::class,'showByLogin']);
 
     Route::delete('/users/{id}',[App\Http\Controllers\Api\UserController::class,'destroy']);
+    Route::post('/usersUpdate/{id}',[App\Http\Controllers\Api\UserController::class,'updateUser']);
     //item
     Route::get('/item',[App\Http\Controllers\Api\ItemController::class,'showAll']);
     Route::get('/item/{id}',[App\Http\Controllers\Api\ItemController::class,'showById']);
