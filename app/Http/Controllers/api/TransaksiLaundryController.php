@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\JenisPengambilan;
 use App\Models\Layanan;
 use App\Models\TransaksiLaundry;
 use App\Models\TransaksiTambahan;
@@ -26,7 +27,7 @@ class TransaksiLaundryController extends Controller
     public function showById($id)
     {
         $transaksi = TransaksiLaundry::find($id);
-
+ 
         if (!$transaksi) {
             return response(['message' => 'Transaksi Laundry not found'], 404);
         }
@@ -37,9 +38,13 @@ class TransaksiLaundryController extends Controller
         ], 200);
     }
 
-    public function showByIdUser($id)
+    public function showByIdUser()
     {
-        $transaksis = TransaksiLaundry::where('id_user', $id)->get();
+     
+        $transaksis = TransaksiLaundry::join('layanan', 'transaksi_laundry.id_layanan', '=', 'layanan.id_layanan')
+    ->where('transaksi_laundry.id_user', auth()->id())
+    ->get();
+
 
         return response([
             'message' => 'Show Transaksi Laundry Successfully',
@@ -53,12 +58,12 @@ class TransaksiLaundryController extends Controller
 
         $validate = Validator::make($data, [
             'id_layanan' => 'required',
-            'id_user' => 'required',
             'id_jenis_pengambilan' => 'required',
+            
             'berat' => 'required',
             
         ]);
-
+        $data['id_user'] = auth()->id();
         $layanan = Layanan::find($data['id_layanan']);
 
 
@@ -71,9 +76,9 @@ class TransaksiLaundryController extends Controller
         if ($validate->fails()) {
             return response(['message' => $validate->errors()->first()], 400);
         }
-
+        $jenisPengambilan = JenisPengambilan::find($data['id_jenis_pengambilan']);
         $totalHarga = $data['berat'] * $layanan['harga'];
-        $data['total_harga'] = $totalHarga;
+        $data['total_harga'] = $totalHarga + $jenisPengambilan['harga'];
 
         $transaksi = TransaksiLaundry::create($data);
 
@@ -120,6 +125,7 @@ class TransaksiLaundryController extends Controller
             ], 200);
         }
 
+        
         
 
         $transaksi['status_pembayaran'] = 'Lunas';

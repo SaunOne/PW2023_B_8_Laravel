@@ -21,6 +21,8 @@ class TransaksiTambahanController extends Controller
         ], 200);
     }
 
+    
+
     public function showById($id)
     {
         $transaksiTambahan = TransaksiTambahan::find($id);
@@ -61,7 +63,7 @@ class TransaksiTambahanController extends Controller
             return response(['message' => 'Transaksi Laundry not found'], 404);
         }
 
-        $totalHarga = $transaksi['total_harga'] + TransaksiTambahan::where('id_transaksi_laundry', $data['id_transaksi_laundry'])->sum('total_harga');
+        $totalHarga = $transaksi['total_harga'] + $data['total_harga'];
 
         $transaksi['total_harga'] = $totalHarga;
 
