@@ -1,66 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## UAS Pemrograman Web Gasal 2023/2024
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+##Kelas B Kelompok 8
 
-## About Laravel
+##Anggota Kelompok:
+    - I Komang Agus Tinar Virgo Triyana Putra (210711236)
+    - Gideon Bahtera Adya Pratama (210711250)
+    - Yerico Elwido (210711116)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+##Username & Password Login:
+    - Login User:
+        - Username:
+        - Password:
+    -Login Admin:
+        - Email: admin@gmail.com
+        - Password: 12345678
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+##Bonus yang diambil:
+    - Hosting:
+        - Backend: https://laundryspace.online
+        - Frontend: 
+    - Routes API:
+        #Auth
+        - GET /api
+        - GET /api/users/{id} - Get User With Specified ID user
+        - POST /api/register - Register
+        - POST /api/login - Login
+        #User
+        - GET /api/users - Get All User
+        - GET /api/userLogin - Get Current User Logged in
+        - POST /api/users/update - Update Current User Logged in
+        - POST /api/usersUpdate/{id} - Update User (Admin)
+        - DELETE /users/{id} - Delete User
+        #Item
+        - GET /api/item - Get All Item
+        - GET /api/item/{id} - Get Specified Item by ID item
+        - POST /api/item - Create Item
+        - PUT /api/item/{id} - Update Item
+        - DELETE /item/{id} - Delete Item
+        #Layanan
+        - GET /api/layanan - Get All Layanan
+        - GET /api/layanan/{id} - Get Specified Layanan by ID layanan 
+        - POST /api/layanan - Create Layanan
+        - PUT /api/layanan/{id} - Update Layanan
+        - DELETE /layanan/{id} - Delete Layanan
+        #Jenis Pengambilan
+        - GET /api/jenisPengambilan - Get All Jenis Pengambilan
+        - GET /api/jenisPengambilan/{id} - Get Specified Jenis Pengambilan by ID jenis pengambilan 
+        - POST /api/jenisPengambilan - Create Jenis Pengambilan
+        - PUT /api/jenisPengambilan/{id} - Update Jenis Pengambilan
+        - DELETE /jenisPengambilan/{id} - Delete Jenis Pengambilan
+        #Deposit
+        - GET /api/deposit - Get All Deposit
+        - GET /api/deposit/{id} - Get Specified Deposit by ID deposit 
+        - GET /api/depositUser/{id} - Get Specified Deposit User by ID deposit 
+        - POST /api/deposit - Create Deposit
+        - POST /api/pembayaran - Create Depost
+        #Transaksi Laundry
+        - GET /api/transaksiLaundry - Get All transaksiLaundry
+        - GET /api/transaksiLaundry/{id} - Get Specified transaksiLaundry by ID transaksiLaundry 
+        - GET /api/transaksiLaundryByUser - Get All transaksiLaundry by User
+        - POST /api/transaksiLaundry - Create TransaksiLaundry
+        - PUT /api/transaksiLaundry/harga/{id} - Update Harga Transaksi Laundry
+        - PUT /api/transaksiLaundry/{id} - Update Transaksi Laundry
+        - DELETE /api/transaksiLaundry/{id} - Delete Transasksi Laundry by ID
+        - PUT /api/transaksiLaundry/bayar/{id} - Update Pembayaran Transaksi Laundry
+        #Transaksi Tambahan
+        - GET /api/transaksiTambahan/transaksi/{id} - Get All TranasaksiTambahan
+        - GET /api/transaksiTambahan/{id} - Get All TranasaksiTambahan
+        - POST /api/transaksiTambahan - Create Transaksi Tambahan
+        - PUT /api/transaksiTambahan/{id} - Update Transaksi Tambahan
+        - DELETE /transaksiTambahan/{id} - Delete Transaksi Tambahan
+        ##React
+        - Link Repository: https://github.com/SaunOne/PW2023_B_8_React.git
