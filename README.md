@@ -31,7 +31,7 @@
         - POST /api/users/update - Update Current User Logged in
         - POST /api/usersUpdate/{id} - Update User (Admin)
         - DELETE /users/{id} - Delete User
-        #Item
+        # Item
         - GET /api/item - Get All Item
         - GET /api/item/{id} - Get Specified Item by ID item
         - POST /api/item - Create Item
