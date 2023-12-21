@@ -41,7 +41,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/layanan/{id}',[App\Http\Controllers\Api\LayananController::class,'showById']);
     Route::post('/layanan',[App\Http\Controllers\Api\LayananController::class,'store']);
     Route::put('/layanan/{id}',[App\Http\Controllers\Api\LayananController::class,'update']);
-    Route::delete('/layanaan/{id}',[App\Http\Controllers\Api\LayananController::class,'destroy']);
+    Route::delete('/layanan/{id}',[App\Http\Controllers\Api\LayananController::class,'destroy']);
 
     //jenisPengambilan
     Route::get('/jenisPengambilan',[App\Http\Controllers\Api\JenisPengambilanController::class,'showAll']);
