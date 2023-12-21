@@ -39,7 +39,9 @@ class AuthController extends Controller
 
         $str = Str::random(100);
         $registrationData['verify_key'] = $str;
+        $registrationData['active'] = false;
         $user = User::create($registrationData);
+        
 
         $details = [
             'username' => $request->username,

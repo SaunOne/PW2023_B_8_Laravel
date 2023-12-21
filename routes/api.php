@@ -18,13 +18,14 @@ Route::post('/register',[App\Http\Controllers\Api\AuthController::class,'registe
 Route::post('/login',[App\Http\Controllers\Api\AuthController::class,'login']);
 Route::post('/test/{id}',[App\Http\Controllers\Api\UserController::class,'tempCreate']);
 Route::get('/verify/{verify_key}',[App\Http\Controllers\Api\AuthController::class,'verify']);
+Route::get('/users/{id}',[App\Http\Controllers\Api\UserController::class,'showById']);
 
 Route::middleware('auth:api')->group(function(){
     //user
     Route::get('/users',[App\Http\Controllers\Api\UserController::class,'showAll']);
     Route::post('/users/update',[App\Http\Controllers\Api\UserController::class,'updateProfile']);
     Route::post('/usersUpdate/{id}',[App\Http\Controllers\Api\UserController::class,'updateUser']);
-    Route::get('/users/{id}',[App\Http\Controllers\Api\UserController::class,'showById']);
+    
     Route::get('/userLogin',[App\Http\Controllers\Api\UserController::class,'showByLogin']);
 
     Route::delete('/users/{id}',[App\Http\Controllers\Api\UserController::class,'destroy']);
@@ -32,7 +33,7 @@ Route::middleware('auth:api')->group(function(){
     Route::get('/item',[App\Http\Controllers\Api\ItemController::class,'showAll']);
     Route::get('/item/{id}',[App\Http\Controllers\Api\ItemController::class,'showById']);
     Route::post('/item',[App\Http\Controllers\Api\ItemController::class,'store']);
-    Route::put('/item/$id',[App\Http\Controllers\Api\ItemController::class,'update']);
+    Route::put('/item/{id}',[App\Http\Controllers\Api\ItemController::class,'update']);
     Route::delete('/item/{id}',[App\Http\Controllers\Api\ItemController::class,'destroy']);
 
     //layanan
@@ -52,7 +53,7 @@ Route::middleware('auth:api')->group(function(){
     //deposit
     Route::get('/deposit',[App\Http\Controllers\Api\TransaksiWalletController::class,'showAll']);
     Route::get('/deposit/{id}',[App\Http\Controllers\Api\TransaksiWalletController::class,'showById']);
-    Route::get('/deposit/user/{id}',[App\Http\Controllers\Api\TransaksiWalletController::class,'showByIdUser']);
+    Route::get('/depositUser/{id}',[App\Http\Controllers\Api\TransaksiWalletController::class,'showByIdUser']);
     Route::post('/deposit',[App\Http\Controllers\Api\TransaksiWalletController::class,'deposit']);
     Route::post('/pembayaran',[App\Http\Controllers\Api\TransaksiWalletController::class,'pembayaran']);
     

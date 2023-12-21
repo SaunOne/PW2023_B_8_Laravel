@@ -126,6 +126,7 @@ class TransaksiLaundryController extends Controller
         }
 
         
+        
 
         $transaksi['status_pembayaran'] = 'Lunas';
         $user['saldo'] = $user['saldo'] - $transaksi['total_harga'];
