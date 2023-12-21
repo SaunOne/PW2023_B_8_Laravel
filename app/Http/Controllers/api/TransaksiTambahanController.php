@@ -97,7 +97,7 @@ class TransaksiTambahanController extends Controller
         }
 
         $transaksiTambahan->update($data);
-
+        
         return response([
             'message' => 'Transaksi Tambahan updated successfully',
             'data' => $transaksiTambahan
